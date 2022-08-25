@@ -8,16 +8,17 @@ Created by arduiNote
 
 #include <Servo.h>
 
-Servo myservo;                // create servo object to control the servo
+Servo myservo;                                    // create servo object to control the servo
 
 
-int ServoValue = 100;         // position needs to be calibrated for your servo (between 0 and 180)
-int SensorThreshold = 40;     // threshold needs to be calibrated for your sensor
+int ServoValue = 100;                             // position needs to be calibrated for your servo (between 0 and 180)
+int SensorThreshold = 40;                         // threshold needs to be calibrated for your sensor
+int DistanceSensorDINOcalibrationValue = 400;     // change this value at your need, or adapt the distance between your sensor and the dino
 
 void setup() {
 
-  Serial.begin(9600);      // initialize serial communication at 9600 bits per second:
-  myservo.attach(9);      // attaches the servo on pin 9 to the servo object
+  Serial.begin(9600);                             // initialize serial communication at 9600 bits per second:
+  myservo.attach(9);                              // attaches the servo on pin 9 to the servo object
 }
 
 
@@ -27,7 +28,7 @@ void loop() {
   
   if(sensorValue > SensorThreshold){                // check if a obstacle is coming , if it is move servo forward and backward to press the button
     
-     delay(400);  
+     delay(DistanceSensorDINOcalibrationValue);  
       
      myservo.write(ServoValue+10);                  // sets the servo position according to the scaled value
      
